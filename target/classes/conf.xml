@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <properties resource="db.properties"/>
+    <!-- 设置全局参数
+    <settings>
+        <setting name="" value="" />
+    </settings>
+    -->
+    <!--定义别名
+        <typeAliases>
+            定义单个别名
+            <typeAlias type="org.entity.Student" alias="student"/>		忽略大小写
+            批量定义别名，以下会将所有包下的类定义别名，别名就是类名（不带包名，忽略大小写）
+            <package name="org.entity" />
+        </typeAliases>
+
+     -->
+    <!-- <typeHandlers>
+        <typeHandler handler="org.converter.BooleanAndIntconvert" javaType="Boolean" jdbcType="INTEGER"/>
+    </typeHandlers> -->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <!--配置数据库信息  -->
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <!-- 加载映射文件 -->
+        <mapper resource="org/mapper/CargoMapper.xml"/>
+        <mapper resource="org/mapper/StockMapper.xml"/>
+        <mapper resource="org/mapper/ManagerMapper.xml"/>
+    </mappers>
+</configuration>

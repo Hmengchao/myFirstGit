@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="GB18030">
+<head>
+    <meta charset="GB18030">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/doc.min.css">
+    <style>
+        .tree li {
+            list-style-type: none;
+            cursor:pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div><a class="navbar-brand" style="font-size:32px;" href="#">后台 - 控制面板</a></div>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li style="padding-top:8px;">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-success dropdown-toggle" data-toggle="dropdown">
+                            <i class="glyphicon glyphicon-user"></i> 小强 <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#"><i class="glyphicon glyphicon-cog"></i> 个人设置</a></li>
+                            <li><a href="#"><i class="glyphicon glyphicon-comment"></i> 消息</a></li>
+                            <li class="divider"></li>
+                            <li><a href="index.html"><i class="glyphicon glyphicon-off"></i> 退出系统</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li style="margin-left:10px;padding-top:8px;">
+                    <button type="button" class="btn btn-default btn-danger">
+                        <span class="glyphicon glyphicon-question-sign"></span> 帮助
+                    </button>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-right">
+                <input type="text" class="form-control" placeholder="查询">
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <div class="tree">
+                <ul style="padding-left:0px;" class="list-group">
+                    <li class="list-group-item tree-closed" >
+                        <a href="mainSystem.html"><i class="glyphicon glyphicon-dashboard"></i> 控制面板</a>
+                    </li>
+                    <li class="list-group-item tree-closed">
+                        <span><i class="glyphicon glyphicon glyphicon-tasks"></i> 管理选项 <span class="badge" style="float:right"></span></span>
+                        <ul style="margin-top:10px;display:none;">
+                            <li style="height:30px;">
+                                <a href="user.html"><i class="glyphicon glyphicon-user"></i> 用户管理</a>
+                            </li>
+                            <li style="height:30px;">
+                                <a href="goodsType.html"><i class="glyphicon glyphicon-equalizer"></i> 商品品类管理</a>
+                            </li>
+                            <li style="height:30px;">
+                                <a href="goods.html"><i class="glyphicon glyphicon-list"></i> 商品管理</a>
+                            </li>
+                            <li style="height:30px;">
+                                <a href="order.html"><i class="glyphicon glyphicon-random"></i> 订单管理</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <ol class="breadcrumb">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">商品品类管理</a></li>
+                <li class="active">商品品类修改</li>
+            </ol>
+            <div class="panel panel-default">
+                <div class="panel-heading">表单数据<div style="float:right;cursor:pointer;" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-question-sign"></i></div></div>
+                <div class="panel-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="typeId">商品类型ID</label>
+                            <input type="text" class="form-control" id="typeId" readonly="readonly"></input>
+                        </div>
+                        <div class="form-group">
+                            <label for="typeName">商品类别名称</label>
+                            <input type="text" class="form-control" id="typeName" >
+                        </div>
+                        <div class="form-group">
+                            <label for="parentTypeId">父类别ID</label>
+                            <input type="text" class="form-control" id="parentTypeId" oninput="this.value = this.value.replace(/[^0-9]/g, '');" >
+                        </div>
+                        <button type="button" class="btn btn-success" onclick="updateGoodsType()"><i class="glyphicon-edit "></i> 修改</button>
+                        <button type="button" class="btn btn-danger" onclick="reload()"><i class="glyphicon glyphicon-refresh"></i> 重置</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">帮助</h4>
+            </div>
+            <div class="modal-body">
+                <div class="bs-callout bs-callout-info">
+                    <h4>测试标题1</h4>
+                    <p>测试内容1，测试内容1，测试内容1，测试内容1，测试内容1，测试内容1</p>
+                </div>
+                <div class="bs-callout bs-callout-info">
+                    <h4>测试标题2</h4>
+                    <p>测试内容2，测试内容2，测试内容2，测试内容2，测试内容2，测试内容2</p>
+                </div>
+            </div>
+            <!--
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+            -->
+        </div>
+    </div>
+</div>
+<script src="jquery/jquery-2.1.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="script/docs.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".list-group-item").click(function(){
+            if ( $(this).find("ul") ) {
+                $(this).toggleClass("tree-closed");
+                if ( $(this).hasClass("tree-closed") ) {
+                    $("ul", this).hide("fast");
+                } else {
+                    $("ul", this).show("fast");
+                }
+            }
+        });
+    });
+
+    var categoryId = window.location.search;
+    categoryId = categoryId.split("=")[1];
+    $.ajax({
+        type: 'POST',
+        url: 'getGoodsTypeById',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({
+            "categoryId":categoryId
+        }),
+        success:function (goodsType) {
+
+            $("#typeId").val(goodsType.categoryId);
+            $("#typeName").val(goodsType.typeName);
+            $("#parentTypeId").val(goodsType.parentId);
+        },
+        error:function (response) {
+            console.error(response);
+        },
+        dataType: 'json'
+    });
+
+    function updateGoodsType() {
+
+        $.ajax({
+            type: 'POST',
+            url: 'updateGoodsType',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({
+                "categoryId":categoryId,
+                "typeName":$("#typeName").val(),
+                "parentId":$("#parentTypeId").val()
+            }),
+            success:function (response) {
+                if(response==true){
+                    window.location.href = "goodsType.html";
+                }else{
+                    alert("修改失败");
+                }
+            },
+            error:function (response) {
+                alert("服务器内部错误,修改失败");
+            },
+            dataType: 'json'
+        });
+    }
+
+    function reload() {
+        location.reload();
+    }
+</script>
+</body>
+</html>

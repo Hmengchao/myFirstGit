@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.mapper.StockMapper" >
+    <select id="QueryStockById" resultType="org.entity.Stock" parameterType="String">
+  		select * from Stock where id = #{id}
+  	</select>
+    <select id="QueryAllStock" resultType="org.entity.Stock">
+        select * from Stock
+    </select>
+    <delete id="DeleteStockById" parameterType="String">
+        delete from Stock where id = #{id}
+    </delete>
+    <insert id="InsertStock" parameterType="org.entity.Stock" >
+        insert into Stock values(#{id},#{Cargo_ID},#{Stock_Num},#{Stock_Price},#{Mana_Name})
+    </insert>
+    <update id="updateStockById" parameterType="org.entity.Stock">
+        update Stock set Cargo_ID=#{Cargo_ID},Stock_Num=#{Stock_Num},Stock_Price=#{Stock_Price} ,Mana_Name=#{Mana_Name} where id = #{id}
+    </update>
+
+</mapper>

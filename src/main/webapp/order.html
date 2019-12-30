@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="GB18030">
+<head>
+	<meta charset="GB18030">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/main.css">
+	<script src="webjars/jquery/3.4.1/dist/jquery.min.js"></script>
+	<style>
+		.tree li {
+			list-style-type: none;
+			cursor:pointer;
+		}
+		table tbody tr:nth-child(odd){background:#F4F4F4;}
+		table tbody td:nth-child(even){color:#C00;}
+	</style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<div><a class="navbar-brand" style="font-size:32px;" href="#">后台 - 控制面板</a></div>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li style="padding-top:8px;">
+					<div class="btn-group">
+						<button type="button" class="btn btn-default btn-success dropdown-toggle" data-toggle="dropdown">
+							<i class="glyphicon glyphicon-user"></i> 小强 <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#"><i class="glyphicon glyphicon-cog"></i> 个人设置</a></li>
+							<li><a href="#"><i class="glyphicon glyphicon-comment"></i> 消息</a></li>
+							<li class="divider"></li>
+							<li><a href="index.html"><i class="glyphicon glyphicon-off"></i> 退出系统</a></li>
+						</ul>
+					</div>
+				</li>
+				<li style="margin-left:10px;padding-top:8px;">
+					<button type="button" class="btn btn-default btn-danger">
+						<span class="glyphicon glyphicon-question-sign"></span> 帮助
+					</button>
+				</li>
+			</ul>
+			<form class="navbar-form navbar-right">
+				<input type="text" class="form-control" placeholder="查询">
+			</form>
+		</div>
+	</div>
+</nav>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-3 col-md-2 sidebar">
+			<div class="tree">
+				<ul style="padding-left:0px;" class="list-group">
+					<li class="list-group-item tree-closed" >
+						<a href="mainSystem.html"><i class="glyphicon glyphicon-dashboard"></i> 控制面板</a>
+					</li>
+					<li class="list-group-item tree-closed">
+						<span><i class="glyphicon glyphicon glyphicon-tasks"></i> 管理选项 <span class="badge" style="float:right"></span></span>
+						<ul style="margin-top:10px;display:none;">
+							<li style="height:30px;">
+								<a href="user.html"><i class="glyphicon glyphicon-user"></i> 用户管理</a>
+							</li>
+							<li style="height:30px;">
+								<a href="goodsType.html"><i class="glyphicon glyphicon-equalizer"></i> 商品品类管理</a>
+							</li>
+							<li style="height:30px;">
+								<a href="goods.html"><i class="glyphicon glyphicon-list"></i> 商品管理</a>
+							</li>
+							<li style="height:30px;">
+								<a href="order.html"><i class="glyphicon glyphicon-random"></i> 订单管理</a>
+							</li>
+						</ul>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title"><i class="glyphicon glyphicon-th"></i> 数据列表</h3>
+				</div>
+				<div class="panel-body">
+					<form class="form-inline" role="form" style="float:left;">
+						<div class="form-group has-feedback">
+							<div class="input-group">
+								<div class="input-group-addon">查询条件</div>
+								<input class="form-control has-success" type="text" placeholder="请输入查询条件">
+							</div>
+						</div>
+						<button type="button" class="btn btn-warning"><i class="glyphicon glyphicon-search"></i> 查询</button>
+					</form>
+					<button type="button" class="btn btn-danger" style="float:right;margin-left:10px;"><i class=" glyphicon glyphicon-remove"></i> 删除</button>
+					<button type="button" class="btn btn-primary" style="float:right;" onclick="window.location.href='addOrder.html'"><i class="glyphicon glyphicon-plus"></i> 新增</button>
+					<br>
+					<hr style="clear:both;">
+					<div class="table-responsive">
+						<table class="table  table-bordered" id="myTable">
+							<thead>
+							<tr >
+								<th width>帐号</th>
+								<th width>货物ID</th>
+								<th>存储数量</th>
+								<th>存储价格</th>
+								<th>管理员名字</th>
+								<th width="100">操作</th>
+							</tr>
+							</thead>
+
+						</table>
+					</div>
+					<div>
+						<table style="margin: auto">
+							<tfoot>
+							<tr >
+								<td colspan="6" align="center">
+									<ul class="pagination" id = "pagination">
+										<li class="disabled"><a href="#">上一页</a></li>
+										<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+										<li><a href="#">2</a></li>
+										<li><a href="#">3</a></li>
+										<li><a href="#">4</a></li>
+										<li><a href="#">5</a></li>
+										<li><a href="#">下一页</a></li>
+									</ul>
+								</td>
+							</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	function visit() {
+		window.open('http://localhost:8888/mvn_supermarket_war_exploded/goodsType.html', '_self')
+	}
+
+	function regesit() {
+		var id = $('#id').val();
+		var name = $('#name').val();
+		var type = $('#type').val();
+
+		$.ajax({
+			method: "GET",
+			url: "http://localhost:8888/mvn_supermarket_war_exploded/insertStock",
+			data: {id: id, name: name, type: type},
+			dataType: "json",
+			success: function (msg) {
+				if (msg.result) {
+					alert('注册成功')
+					initTable();
+				} else {
+					alert('注册失败')
+					initTable();
+				}
+			}
+		});
+	}
+
+	$(document).ready(function () {//当文档加载完毕之后执行，初始化
+		initTable();
+	})
+
+	function initTable() {
+		$.ajax({
+			method: "GET",
+			url: "http://localhost:8888/mvn_supermarket_war_exploded/queryAllStock",
+			dataType: "json",
+			success: function (msg) {
+				$('#myTable').empty().append('<tr ><th width>帐号</th><th width>货物ID</th><th>存储数量</th><th>存储价格</th><th>管理员名字</th><th width="100" colspan="2">操作</th></tr>');
+				$(msg).each(function (i, n) {
+					console.log(n)
+					$('#myTable').append('<tr ><td>' + n.id + '</td><td>' + n.Cargo_ID + '</td><td>' + n.Stock_Num + '</td><td>' + n.Stock_Price + '</td><td>' + n.Mana_Name + '</td><td><a href="javascript:getData(' + n.id + ')">修改</a></td>&nbsp;&nbsp;<td><a href="javascript:removeRow(' + (n.id).toString() + ')">删除</a></td></tr>')
+				})
+
+			}
+		});
+	}
+
+
+	function removeRow(id) {
+		var flag = window.confirm('提示：您是否要删除该行数据?')
+		if (flag) {
+			$.ajax({
+				method: "GET",
+				url: "http://localhost:8888/mvn_supermarket_war_exploded/deleteStock",
+				data: {id: id.toString()},
+				dataType: "json",
+				success: function (msg) {
+					if (msg.result) {
+						alert('删除成功');
+						initTable();
+					} else {
+						alert('删除失败');
+					}
+				}
+			});
+		}
+	}
+
+	function getData(id) {
+		$.ajax({
+			method: "GET",
+			url: "http://localhost:8888/mvn_supermarket_war_exploded/queryAllStock",
+			data: {id: id.toString()},
+			dataType: "json",
+			success: function (msg) {
+				// $('#myTable').empty().append('<tr ><th>编号</th><th>名称</th><th>类别</th></tr>');
+				// $(msg).each(function (i, n) {
+				//     console.log(n)
+				//             })
+				$('#myTable').append('<tr ><td>' + id + '</td><input type="text" id="Cargo_ID"><td><input type="text" id="Stock_Num"><td><input type="text" id="Stock_Price"></td><td><input type="text" id="Mana_Name"></td><td><a href="javascript:updateRow(' + id + ')">修改</a></td></tr>')
+
+			}
+		});
+	}
+
+	function updateRow(id) {
+		var Cargo_ID= $('#Cargo_ID').val();
+		var Stock_Num= $('#Stock_Num').val();
+		var Stock_Price = $('#Stock_Price').val();
+		var Mana_Name = $('#Mana_Name').val();
+
+		$.ajax({
+			method: "GET",
+			url: "http://localhost:8888/mvn_supermarket_war_exploded/updateStock",
+			data: {id: id, Cargo_ID: Cargo_ID, Stock_Num: Stock_Num,Stock_Price: Stock_Price,Mana_Name: Mana_Name},
+			dataType: "json",
+			success: function (msg) {
+				if (msg.result) {
+					alert('修改成功');
+					initTable();
+				} else {
+					alert('修改失败');
+					initTable();
+				}
+			}
+		});
+	}
+
+</script>
+
+<script src="jquery/jquery-2.1.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="script/docs.min.js"></script>
+<script type="text/javascript">
+	$(function () {
+		$(".list-group-item").click(function(){
+			if ( $(this).find("ul") ) {
+				$(this).toggleClass("tree-closed");
+				if ( $(this).hasClass("tree-closed") ) {
+					$("ul", this).hide("fast");
+				} else {
+					$("ul", this).show("fast");
+				}
+			}
+		});
+	});
+	$("tbody .btn-success").click(function(){
+		window.location.href = "detailOrder.html";
+	});
+	$("tbody .btn-primary").click(function(){
+		window.location.href = "orderEdit.html";
+	});
+</script>
+</body>
+</html>

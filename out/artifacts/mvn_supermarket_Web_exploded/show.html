@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>货物管理</title>
+
+    <script src="webjars/jquery/3.4.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        function visit() {
+            window.open('http://localhost:8888/mvn_supermarket_war_exploded/', '_self')
+        }
+
+        function regesit() {
+            var id = $('#id').val();
+            var name = $('#name').val();
+            var type = $('#type').val();
+
+            $.ajax({
+                method: "GET",
+                url: "http://localhost:8888/mvn_supermarket_war_exploded/insert",
+                data: {id: id, name: name, type: type},
+                dataType: "json",
+                success: function (msg) {
+                    if (msg.result) {
+                        alert('注册成功')
+                        initTable();
+                    } else {
+                        alert('注册失败')
+                        initTable();
+                    }
+                }
+            });
+        }
+
+        $(document).ready(function () {//当文档加载完毕之后执行，初始化
+            initTable();
+        })
+
+        function initTable() {
+            $.ajax({
+                method: "GET",
+                url: "http://localhost:8888/mvn_supermarket_war_exploded/select",
+                dataType: "json",
+                success: function (msg) {
+                    $('#myTable').empty().append('<tr ><th>编号</th><th>名称</th><th>类别</th></tr>');
+                    $(msg).each(function (i, n) {
+                        console.log(n)
+                        $('#myTable').append('<tr ><td>' + n.Cargo_ID + '</td><td>' + n.Cargo_Name + '</td><td>' + n.Cargo_Type + '</td><td><a href="javascript:getData(' + n.Cargo_ID + ')">修改</a></td>&nbsp;&nbsp;<td><a href="javascript:removeRow(' + (n.Cargo_ID).toString() + ')">删除</a></td></tr>')
+                    })
+
+                }
+            });
+        }
+
+
+        function removeRow(id) {
+            var flag = window.confirm('提示：您是否要删除该行数据?')
+            if (flag) {
+                $.ajax({
+                    method: "GET",
+                    url: "http://localhost:8888/mvn_supermarket_war_exploded/delete",
+                    data: {id: id.toString()},
+                    dataType: "json",
+                    success: function (msg) {
+                        if (msg.result) {
+                            alert('删除成功');
+                            initTable();
+                        } else {
+                            alert('删除失败');
+                        }
+                    }
+                });
+            }
+        }
+
+        function getData(id) {
+            $.ajax({
+                method: "GET",
+                url: "http://localhost:8888/mvn_supermarket_war_exploded/select",
+                data: {id: id.toString()},
+                dataType: "json",
+                success: function (msg) {
+                    // $('#myTable').empty().append('<tr ><th>编号</th><th>名称</th><th>类别</th></tr>');
+                    // $(msg).each(function (i, n) {
+                    //     console.log(n)
+                    //             })
+                    $('#myTable').append('<tr ><td>' + id + '</td><td><input type="text" id="uname"></td><td><input type="text" id="utype"></td><td><a href="javascript:updateRow(' + id + ')">修改</a></td></tr>')
+
+                }
+            });
+        }
+
+        function updateRow(id) {
+            var name = $('#uname').val();
+            var type = $('#utype').val();
+
+            $.ajax({
+                method: "GET",
+                url: "http://localhost:8888/mvn_supermarket_war_exploded/update",
+                data: {id: id, name: name, type: type},
+                dataType: "json",
+                success: function (msg) {
+                    if (msg.result) {
+                        alert('修改成功');
+                        initTable();
+                    } else {
+                        alert('修改失败');
+                        initTable();
+                    }
+                }
+            });
+        }
+
+    </script>
+    <style>
+        body {
+            background: url("image/clear.jpg");
+        }
+
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .div_top {
+            width: 900px;
+            height: 300px;
+            border: 8px solid rgba(200, 200, 200, 0.5);
+            margin: auto;
+            background: url("image/clear.jpg");
+        }
+
+        .div_bottom {
+            width: 900px;
+            border: 8px solid rgba(200, 200, 200, 0.5);
+            /*background-color: white;*/
+            margin: auto;
+            background: url("image/w.jpg") no-repeat;
+            background-position: 0px 0px;
+        }
+
+        .input {
+            width: 251px;
+            height: 32px;
+            border: 2px solid;
+            border-radius: 8px;
+
+        }
+
+        table {
+            width: 900px;
+        }
+
+        #rege {
+            height: 32px;
+            width: 100px;
+            margin-left: 100px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+<div class="div_top">
+    <input onclick="visit()" type="button" value="重新登陆"><br><br>
+
+    编号:<input class="input" id="id" type="text"><br><br>
+    名称:<input class="input" id="name" type="text"><br><br/>
+    类型:<input class="input" id="type" type="text"><br><br/>
+    <input id="rege" onclick="regesit()" type="button" value="增加货物"><br><br>
+</div>
+
+<div class="div_bottom">
+    <table border="1" id="myTable"
+           style="width:500px;border:1px groove gray;border-spacing: 0px;border-collapse: initial">
+
+    </table>
+</div>
+</body>
+</html>

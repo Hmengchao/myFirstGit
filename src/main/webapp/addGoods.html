@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="GB18030">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/doc.min.css">
+    <style>
+        .tree li {
+            list-style-type: none;
+            cursor:pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div><a class="navbar-brand" style="font-size:32px;" href="#">后台 - 控制面板</a></div>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li style="padding-top:8px;">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-success dropdown-toggle" data-toggle="dropdown">
+                            <i class="glyphicon glyphicon-user"></i> 小强 <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#"><i class="glyphicon glyphicon-cog"></i> 个人设置</a></li>
+                            <li><a href="#"><i class="glyphicon glyphicon-comment"></i> 消息</a></li>
+                            <li class="divider"></li>
+                            <li><a href="index.html"><i class="glyphicon glyphicon-off"></i> 退出系统</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li style="margin-left:10px;padding-top:8px;">
+                    <button type="button" class="btn btn-default btn-danger">
+                        <span class="glyphicon glyphicon-question-sign"></span> 帮助
+                    </button>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-right">
+                <input type="text" class="form-control" placeholder="查询">
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <div class="tree">
+                <ul style="padding-left:0px;" class="list-group">
+                    <li class="list-group-item tree-closed" >
+                        <a href="mainSystem.html"><i class="glyphicon glyphicon-dashboard"></i> 控制面板</a>
+                    </li>
+                    <li class="list-group-item tree-closed">
+                        <span><i class="glyphicon glyphicon glyphicon-tasks"></i> 管理选项 <span class="badge" style="float:right"></span></span>
+                        <ul style="margin-top:10px;display:none;">
+                            <li style="height:30px;">
+                                <a href="user.html"><i class="glyphicon glyphicon-user"></i> 用户管理</a>
+                            </li>
+                            <li style="height:30px;">
+                                <a href="goodsType.html"><i class="glyphicon glyphicon-equalizer"></i> 商品品类管理</a>
+                            </li>
+                            <li style="height:30px;">
+                                <a href="goods.html"><i class="glyphicon glyphicon-list"></i> 商品管理</a>
+                            </li>
+                            <li style="height:30px;">
+                                <a href="order.html"><i class="glyphicon glyphicon-random"></i> 订单管理</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <ol class="breadcrumb">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">商品管理</a></li>
+                <li class="active">商品信息新增</li>
+            </ol>
+            <div class="panel panel-default">
+                <div class="panel-heading">新增商品详细信息<div style="float:right;cursor:pointer;" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-question-sign"></i></div></div>
+                <div class="panel-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="categoryId">类别ID</label>
+                            <input type="text" class="table-bordered" id="categoryId">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="brandId">品牌ID</label>
+                            <input type="text" class="table-bordered" id="brandId">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="brandName">品牌名称</label>
+                            <input type="text" class="table-bordered" id="brandName">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="goodsTitle">商品标题</label>
+                            <input type="text" class="table-bordered" id="goodsTitle">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="goodsName">商品名称</label>
+                            <input type="text" class="table-bordered" id="goodsName">
+                        </div>
+                        <div class="form-group">
+                            <label for="price">商品价格</label>
+                            <input type="text" class="table-bordered" id="price"><span>元</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="basePrice">市场价（原价）</label>
+                            <input type="text" class="table-bordered" id="basePrice"><span>元</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="costPrice">成本价（原价）</label>
+                            <input type="text" class="table-bordered" id="costPrice"><span>元</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="stockNum">商品库存</label>
+                            <input type="text" class="table-bordered" id="stockNum">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="sellNum">销量</label>
+                            <input type="text" class="table-bordered" id="sellNum">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="status">商品状态</label>
+                            <input type="text" class="table-bordered" id="status">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="shopAddress">发货地</label>
+                            <input type="text" class="table-bordered" id="shopAddress">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="originAddress">原产地</label>
+                            <input type="text" class="table-bordered" id="originAddress">
+                        </div>
+                        <div class="form-group">
+                            <label for="carriageTime">上架时间</label>
+                            <input type="text" class="table-bordered" id="carriageTime">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="createBy">由谁创建</label>
+                            <input type="text" class="table-bordered" id="createBy">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="createAt">创建时间</label>
+                            <input type="text" class="table-bordered" id="createAt">
+                        </div>
+                        <div class="form-group">
+                            <label for="firstCategoryId">一级类别ID</label>
+                            <input type="text" class="table-bordered" id="firstCategoryId">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="firstCategoryName">一级类别名称</label>
+                            <input type="text" class="table-bordered" id="firstCategoryName">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="secondCategoryId">二级类别ID</label>
+                            <input type="text" class="table-bordered" id="secondCategoryId">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="secondCategoryName">二级类别名称</label>
+                            <input type="text" class="table-bordered" id="secondCategoryName">
+                        </div>
+                        <div class="form-group">
+                            <label for="remark">备注</label>
+                            <input type="text" class="form-control " id="remark" >
+
+                        </div>
+                        <div class="form-group">
+                            <label for="goodsDesc">商品描述</label>
+                            <input type="text" class="form-control col-sm-9" id="goodsDesc" >
+
+                        </div>
+                        <br/>
+                        <br/>
+                        <button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> 新增</button>
+                        <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-refresh"></i> 重置</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">帮助</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="bs-callout bs-callout-info">
+                        <h4>测试标题1</h4>
+                        <p>测试内容1，测试内容1，测试内容1，测试内容1，测试内容1，测试内容1</p>
+                    </div>
+                    <div class="bs-callout bs-callout-info">
+                        <h4>测试标题2</h4>
+                        <p>测试内容2，测试内容2，测试内容2，测试内容2，测试内容2，测试内容2</p>
+                    </div>
+                </div>
+                <!--
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
+    <script src="jquery/jquery-2.1.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="script/docs.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".list-group-item").click(function(){
+                if ( $(this).find("ul") ) {
+                    $(this).toggleClass("tree-closed");
+                    if ( $(this).hasClass("tree-closed") ) {
+                        $("ul", this).hide("fast");
+                    } else {
+                        $("ul", this).show("fast");
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

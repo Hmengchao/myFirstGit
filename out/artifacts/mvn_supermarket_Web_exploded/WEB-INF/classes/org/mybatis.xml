@@ -1,0 +1,32 @@
+
+<mappers>
+
+    <mapper resource="org/mapper/ManagerMapper.xml"/>
+    <mapper resource="org/mapper/CargoMapper.xml"/>
+    <mapper resource="org/mapper/StockMapper.xml"/>
+    <mapper resource="org/mapper/ManagerMapper.class"/>
+    <mapper resource="org/mapper/CargoMapper.class"/>
+    <mapper resource="org/mapper/StockMapper.class"/>
+</mappers>
+<!--<mappers>
+<mapper url="file:///var/mappers/AuthorMapper.xml"/>
+<mapper url="file:///var/mappers/BlogMapper.xml"/>
+<mapper url="file:///var/mappers/PostMapper.xml"/>
+</mappers>
+<mappers>
+<mapper class="org.mybatis.builder.AuthorMapper"/>
+<mapper class="org.mybatis.builder.BlogMapper"/>
+<mapper class="org.mybatis.builder.PostMapper"/>
+</mappers>
+<mappers>
+<package name="org.mybatis.builder"/>
+</mappers>-->
+<!--
+<select id="testMyBatisWorks" resultType="java.util.HashMap">
+<![CDATA[
+		    {call pQueryAsyncNoticeList (
+				    #{0,mode=IN,jdbcType=INTEGER}
+			    )
+		    }
+		]]>
+</select>-->

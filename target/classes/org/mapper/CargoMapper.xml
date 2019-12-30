@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.mapper.CargoMapper" >
+    <!-- 使用类转换器，
+    如果表中的字段和类中属性一致的话,使用resultType
+    如果表中的字段和类中的属性不一致的话，使用resultMap
+        <select id="QueryStudentBySnoWithconvert" resultMap="StudentResult" parameterType="int">
+         select * from student where sno = #{sno}
+     </select>
+    <resultMap type="org.entity.Student" id="StudentResult">
+        主键用id，非主键用result
+        <id property="sno" column="sno"/>
+        <result property="sno" column="sname"/>
+        <result property="sno" column="sage"/>
+        <result property="sno" column="saddress" javaType="boolean" jdbcType="INTEGER"/>
+
+
+    </resultMap>
+
+     -->
+    <select id="QueryCargoById" resultType="org.entity.Cargo" parameterType="String">
+  		select * from Cargo where Cargo_ID = #{Cargo_ID}
+  	</select>
+    <select id="QueryAllCargo" resultType="org.entity.Cargo">
+        select * from Cargo
+    </select>
+    <delete id="DeleteCargoById" parameterType="String">
+        delete from Cargo where Cargo_ID = #{Cargo_ID}
+    </delete>
+    <insert id="InsertCargo" parameterType="org.entity.Cargo" >
+        insert into Cargo values(#{Cargo_ID},#{Cargo_Name},#{Cargo_Type})
+    </insert>
+    <update id="updateCargoById" parameterType="org.entity.Cargo">
+        update Cargo set Cargo_Name=#{Cargo_Name},Cargo_Type=#{Cargo_Type} where Cargo_ID = #{Cargo_ID}
+    </update>
+   <!-- <select id="QueryAllStudent" resultType="org.entity.Student">
+  		select * from student
+  	</select>
+    <delete id="DeleteStudentBySno" parameterType="int">
+  		  delete from student where sno= #{sno}
+  	</delete>
+    <insert id="InsertStudent" parameterType="org.entity.Student">
+  		insert into student values(#{sno},#{sname},#{sage},#{saddress})
+  	</insert>
+    <update id="UpdateStudentBySno" parameterType="org.entity.Student">
+  		update student set sname=#{sname},sage=#{sage},saddress=#{saddress} where sno=#{sno}
+  	</update>-->
+
+</mapper>
